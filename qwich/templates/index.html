@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Квич</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=47bd0015-3dae-43bd-9319-8d7315f2e11a&lang=ru_RU" type="text/javascript"></script>
+</head>
+<body>
+<nav class="navbar">
+    <a class="navbar-brand" href="#">Квич</a>
+    <!--Поиск турнира-->
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Поиск турнира" aria-label="Search">
+    </form>
+    <!--Выбор даты-->
+    <div class="form-inline">
+        <input type="text" class="form-control" name="dates">
+    </div>
+    <!--Вход в кабинет-->
+    <nav class="nav-item">
+        <a href="{% url 'new_game' %}">Войти</a>
+    </nav>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md"><!--The list of games in this column-->
+            {%  for card in card_set %}
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ card.game }}</h5>
+                        <p>{{ card.place_name }}, {{ card.place_location }}</p>
+                        <p>{{ card.date_time }}</p>
+                        <p>{% if card.organizer %} Организатор: {{ card.organizer }}. {% endif %}Ведёт {{ card.reader }}</p>
+                    </div>
+                </div>
+                <p></p>
+            {% endfor %}
+        </div>
+        <div class="col-md"><!--The map-->
+            <div id="map" style="width: 600px; height: 400px"></div>
+        </div>
+    </div>
+</div>
+<script>
+    $('input[name="dates"]').daterangepicker({
+        "autoApply": true,
+        "locale": {
+            "format": "DD.MM.YYYY",
+        "separator": " - ",
+        "applyLabel": "Ок",
+        "cancelLabel": "Отмена",
+        "fromLabel": "От",
+        "toLabel": "До",
+        "customRangeLabel": "Custom",
+        "daysOfWeek": [
+            "Вс",
+            "Пн",
+            "Вт",
+            "Ср",
+            "Чт",
+            "Пт",
+            "Сб"
+        ],
+        "monthNames": [
+            "Январь",
+            "Февраль",
+            "Март",
+            "Апрель",
+            "Май",
+            "Июнь",
+            "Июль",
+            "Август",
+            "Сентябрь",
+            "Октябрь",
+            "Ноябрь",
+            "Декабрь"
+        ],
+        "firstDay": 1
+        }
+    });
+</script>
+<script type="text/javascript">
+    // The ymaps.ready() function will be called when
+    // all the API components are loaded and the DOM tree is generated.
+    ymaps.ready(init);
+    function init(){
+        // Creating the map.
+        var myMap = new ymaps.Map("map", {
+            // The map center coordinates.
+            // Default order: “latitude, longitude”.
+            // To not manually determine the map center coordinates,
+            // use the Coordinate detection tool.
+            center: [55.76, 37.64],
+            // Zoom level. Acceptable values:
+            // from 0 (the entire world) to 19.
+            zoom: 7
+        });
+    }
+</script>
+</body>
+</html>
