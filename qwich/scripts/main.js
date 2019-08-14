@@ -1,2 +1,8 @@
-var myHeading = document.querySelector('h1');
-myHeading.textContent = 'Hello world!';
+
+var coords = [
+    ymaps.geocode({{ card.place_location }})
+]
+
+$(document).ready(function(){
+    $()
+})

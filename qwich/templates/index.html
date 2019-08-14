@@ -1,4 +1,5 @@
 {% load static %}
+{% load l10n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,11 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=47bd0015-3dae-43bd-9319-8d7315f2e11a&lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=47bd0015-3dae-43bd-9319-8d7315f2e11a&lang=ru_RU&mode=debug" type="text/javascript"></script>
 </head>
 <body>
 <nav class="navbar">
-    <a class="navbar-brand" href="#">Квич</a>
+    <a class="navbar-brand" href="#" id="Qwich">Квич</a>
     <!--Поиск турнира-->
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Поиск турнира" aria-label="Search">
@@ -35,10 +36,15 @@
             {%  for card in card_set %}
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ card.game }}</h5>
+                        <div class="clearfix">
+                            <h5 class="float-left">{{ card.game }}</h5>
+                            <p class="text-secondary float-right">{{ card.date_time|date:"j E в H:i" }}</p>
+                        </div>
                         <p>{{ card.place_name }}, {{ card.place_location }}</p>
-                        <p>{{ card.date_time }}</p>
-                        <p>{% if card.organizer %} Организатор: {{ card.organizer }}. {% endif %}Ведёт {{ card.reader }}</p>
+                        <div class="clearfix">
+                            <text class="float-left">Ведёт {{ card.reader }}</text>
+                            <text class="float-right">{% if card.organizer %} {{ card.organizer }}. {% endif %}</text>
+                        </div>
                     </div>
                 </div>
                 <p></p>
@@ -46,6 +52,7 @@
         </div>
         <div class="col-md"><!--The map-->
             <div id="map" style="width: 600px; height: 400px"></div>
+            <div id="test">Test</div>
         </div>
     </div>
 </div>
@@ -87,7 +94,12 @@
         }
     });
 </script>
+<script>
+
+
+</script>
 <script type="text/javascript">
+
     // The ymaps.ready() function will be called when
     // all the API components are loaded and the DOM tree is generated.
     ymaps.ready(init);
@@ -102,8 +114,41 @@
             // Zoom level. Acceptable values:
             // from 0 (the entire world) to 19.
             zoom: 7
+
         });
-    }
+
+    myMap.controls.remove('searchControl');
+    myMap.controls.remove('typeSelector');
+    myMap.controls.remove('rulerControl');
+    myMap.controls.remove('trafficControl');
+
+
+    let clusterer = new ymaps.Clusterer({
+        preset: 'islands#blueClusterIcons',
+        groupByCoordinates: true,
+        clusterDisableClickZoom: true,
+        clusterHideIconOnBalloonOpen: false,
+        geoObjectHideIconOnBalloonOpen: false
+    });
+
+    let queryCollection = [];
+
+   {% for card in card_set %}
+        queryCollection.push(new ymaps.Placemark([{{ card.place_coord_long|unlocalize }}, {{ card.place_coord_lat|unlocalize }}],
+            {iconCaption: '{{ card.game|safe }}',
+            baloonHeader: '{{ card.game|safe }}',
+            clusterCaption: '{{ card.game|safe }}',
+            balloonContentBody: '<p>Место проведения: {{ card.place_name|safe }}</p><p>{{ card.date_time|date:"j E в H:i" }}'}));
+   {% endfor %}
+
+    clusterer.add(queryCollection);
+    myMap.geoObjects.add(clusterer);
+
+    $('#test').text(queryCollection.length);
+    myMap.setBounds(clusterer.getBounds());
+
+    };
 </script>
+
 </body>
 </html>
