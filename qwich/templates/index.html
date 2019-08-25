@@ -32,7 +32,8 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md"><!--The list of games in this column-->
+        <div class="col-sm-0" id="left_column"></div>
+        <div class="col-sm-5" id="card_column"><!--The list of games in this column-->
             {%  for card in card_set %}
                 <div class="card">
                     <div class="card-body">
@@ -50,7 +51,10 @@
                 <p></p>
             {% endfor %}
         </div>
-        <div class="col-md"><!--The map-->
+        <div class="col-sm-6" id="map_space"><!--The map-->
+            <div>
+                <img src="{% static "qwich/baseline-map-24px.svg" %}">
+            </div>
             <div id="map" style="width: 600px; height: 400px"></div>
             <div id="test">Test</div>
         </div>
@@ -148,6 +152,21 @@
     myMap.setBounds(clusterer.getBounds());
 
     };
+
+    $("#map_space").click(function(){
+        if ($('#map').hidden !== 0) {
+            $("#left_column").attr("class", "col-sm-3");
+            $("#card_column").attr("class", "col-sm-6");
+            $("#map_space").attr("class", "col-sm-3");
+            $("#map").hide()
+        } else {
+            $("#left_column").attr("class", "col-sm-1");
+            $("#card_column").attr("class", "col-sm-5");
+            $("#map_space").attr("class", "col-sm-6");
+            $("#map").show()
+        }
+    });
+
 </script>
 
 </body>
