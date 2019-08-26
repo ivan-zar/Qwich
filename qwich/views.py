@@ -1,14 +1,20 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
+import math
 
 from .models import Announcement
 
 
-def index(request):
+def index(request, card_batch=1):
 
-    card_set = Announcement.objects.all()[:5]
-    context = {'card_set': card_set}
+    card_batch = int(card_batch)
+    card_set = Announcement.objects.all()[5*(card_batch-1):(5*card_batch)]
+    batches_number = range(1, min(math.ceil(Announcement.objects.all().count()/5) + 1, 7))
+
+    context = {'card_set': card_set,
+               'batches_number': batches_number,
+               'card_batch': card_batch}
 
     return render(request, 'index.html', context)
 

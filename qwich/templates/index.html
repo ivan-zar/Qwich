@@ -50,15 +50,36 @@
                 </div>
                 <p></p>
             {% endfor %}
-        </div>
-        <div class="col-sm-6" id="map_space"><!--The map-->
-            <div>
-                <img src="{% static "qwich/baseline-map-24px.svg" %}">
+            <div class="row justify-content-center">
+                <nav>
+                  <ul class="pagination">
+
+                    </li>
+                      {% for i in batches_number %}
+                          <li class="page-item"><a class="page-link" href="{% url 'next_set' card_batch=i %}">{{ i }}</a></li>
+                      {% endfor %}
+
+                    </li>
+                  </ul>
+                </nav>
             </div>
-            <div id="map" style="width: 600px; height: 400px"></div>
-            <div id="test">Test</div>
+        </div>
+        <div class="col-sm-7" id="map_space"><!--The map-->
+            <div class="d-flex justify-content-end">
+                <div id="map" style="width: 600px; height: 400px"></div>
+                <div id="map_icon">
+                    <img src="{% static "qwich/baseline-map-24px.svg" %}"><br>
+                    <p id="map_label">Скрыть</p>
+                </div>
+
+            </div>
+
         </div>
     </div>
+</div>
+<div id="test">
+    Test line:
+
 </div>
 <script>
     $('input[name="dates"]').daterangepicker({
@@ -148,24 +169,29 @@
     clusterer.add(queryCollection);
     myMap.geoObjects.add(clusterer);
 
-    $('#test').text(queryCollection.length);
+    //$('#test').text(queryCollection.length);
     myMap.setBounds(clusterer.getBounds());
 
     };
 
-    $("#map_space").click(function(){
-        if ($('#map').hidden !== 0) {
+
+     $("#map_icon").click(function(){
+        if ($('#map').is(":visible")) {
             $("#left_column").attr("class", "col-sm-3");
             $("#card_column").attr("class", "col-sm-6");
             $("#map_space").attr("class", "col-sm-3");
             $("#map").hide()
+            $("#map_label").text("Карта")
         } else {
-            $("#left_column").attr("class", "col-sm-1");
+            $("#left_column").attr("class", "col-sm-0");
             $("#card_column").attr("class", "col-sm-5");
-            $("#map_space").attr("class", "col-sm-6");
+            $("#map_space").attr("class", "col-sm-7");
             $("#map").show()
+            $("#map_label").text("Скрыть")
         }
     });
+
+
 
 </script>
 

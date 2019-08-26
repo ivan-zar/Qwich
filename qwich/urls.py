@@ -21,5 +21,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('new_game', views.new_game, name='new_game'),
     path('admin/', admin.site.urls),
-    path('new_game_added', views.new_game_added, name='new_game_added')
+    path('new_game_added', views.new_game_added, name='new_game_added'),
+    path('index/<card_batch>', views.index, name='next_set')
 ]

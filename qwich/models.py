@@ -8,7 +8,7 @@ class Announcement(models.Model):
     reader = models.CharField(max_length=200)
     date_time = models.DateTimeField()
     game_type = models.CharField(max_length=200)
-    metro = models.CharField(max_length=200)
+    metro = models.CharField(max_length=200, blank=True)
     organizer = models.CharField(max_length=200, blank=True)
     place_coord_long = models.FloatField()
     place_coord_lat = models.FloatField()
