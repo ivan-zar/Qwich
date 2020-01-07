@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'qwich_db',
-        'USER': 'root',
+        'USER': 'ivan',
         'PASSWORD': 'Pl!n1usM',
         'HOST': '127.0.0.1',
         'PORT': '3306',
@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'America/Los_Angeles'
 
@@ -126,4 +126,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'qwich/staticroot')
-

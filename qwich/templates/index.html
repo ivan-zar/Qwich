@@ -1,4 +1,5 @@
 {% load static %}
+{% load l10n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +38,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ card.game }}</h5>
                         <p>{{ card.place_name }}, {{ card.place_location }}</p>
-                        <p>{{ card.date_time }}</p>
+                        <p>{{ card.date_time|localize }}</p>
                         <p>{% if card.organizer %} Организатор: {{ card.organizer }}. {% endif %}Ведёт {{ card.reader }}</p>
                     </div>
                 </div>
@@ -103,6 +104,31 @@
             // from 0 (the entire world) to 19.
             zoom: 7
         });
+
+        var myClusterer = new ymaps.Clusterer();
+
+        //Addition of places from the current card_set to the map
+        {% for card in card_set %}
+        myGeoObject = new ymaps.Placemark(
+          [{{ card.place_lat | unlocalize }}, {{ card.place_long | unlocalize }}],
+          {
+            balloonContentHeader: "{{card.game}}",
+            balloonContentBody: "{{ card.date_time }}<br>{{ card.place_name }}, {{ card.place_location }}",
+
+          }
+           // properties: {
+           //   balloonContent: "{{card.game}}",
+           // }
+        );
+        myMap.geoObjects.add(myGeoObject);
+        myClusterer.add(myGeoObject);
+        {% endfor %}
+
+
+        myMap.geoObjects.add(myClusterer);
+
+        myMap.setBounds(myMap.geoObjects.getBounds());
+
     }
 </script>
 </body>
