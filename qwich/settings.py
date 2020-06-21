@@ -77,12 +77,13 @@ WSGI_APPLICATION = 'qwich.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'qwich_db',
-        'USER': 'root',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'qwich',
+        'HOST': 'database-1.cezkrls0tglp.us-west-2.rds.amazonaws.com',
+        'USER': 'postgres',
         'PASSWORD': 'Pl!n1usM',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'PORT': '5432',
+
     }
 }
 

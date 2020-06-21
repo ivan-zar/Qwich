@@ -1,0 +1,66 @@
+ schemaname |        tablename        | tableowner | tablespace | hasindexes | hasrules | hastriggers | rowsecurity 
+------------+-------------------------+------------+------------+------------+----------+-------------+-------------
+ pg_catalog | pg_statistic            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_foreign_table        | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_authid               | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_user_mapping         | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_subscription         | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_largeobject          | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_type                 | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_attribute            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_proc                 | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_class                | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_attrdef              | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_constraint           | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_inherits             | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_index                | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_operator             | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_opfamily             | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_opclass              | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_am                   | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_amop                 | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_amproc               | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_language             | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_largeobject_metadata | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_aggregate            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_statistic_ext        | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_rewrite              | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_trigger              | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_event_trigger        | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_description          | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_cast                 | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_enum                 | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_namespace            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_conversion           | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_depend               | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_database             | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_db_role_setting      | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_tablespace           | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_pltemplate           | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_auth_members         | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_shdepend             | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_shdescription        | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_ts_config            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_ts_config_map        | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_ts_dict              | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_ts_parser            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_ts_template          | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_extension            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_foreign_data_wrapper | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_foreign_server       | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_policy               | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_replication_origin   | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_default_acl          | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_init_privs           | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_seclabel             | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_shseclabel           | rdsadmin   | pg_global  | t          | f        | f           | f
+ pg_catalog | pg_collation            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_partitioned_table    | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_range                | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_transform            | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_sequence             | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_publication          | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_publication_rel      | rdsadmin   |            | t          | f        | f           | f
+ pg_catalog | pg_subscription_rel     | rdsadmin   |            | t          | f        | f           | f
+(62 rows)
+

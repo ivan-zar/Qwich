@@ -9,7 +9,5 @@ class Announcement(models.Model):
     date_time = models.DateTimeField()
     game_type = models.CharField(max_length=200)
     metro = models.CharField(max_length=200)
-    organizer = models.CharField(max_length=200)
-
-
-
+    organizer = models.CharField(max_length=200, blank=True)
+    
